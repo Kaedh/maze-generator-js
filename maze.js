@@ -5,11 +5,17 @@ const gridDimensions = {
 
 class Cell {
     constructor() {
-        this.top = true,
-        this.right = true,
-        this.bottom = true,
-        this.left = true
+        this.top = true;
+        this.right = true;
+        this.bottom = true;
+        this.left = true;
+
+        this.visited = false;
     };
+
+    markAsVisited() {
+        this.visited = true;
+    }
 };
 
 function createDataStructure(gridDimensions) {
@@ -28,3 +34,4 @@ function createDataStructure(gridDimensions) {
 
     return gridMatrix;
 };
+
