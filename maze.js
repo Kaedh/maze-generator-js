@@ -35,3 +35,18 @@ function createDataStructure(gridDimensions) {
     return gridMatrix;
 };
 
+
+function main() {
+    let stack = [];
+    const maze = createDataStructure(gridDimensions);
+
+    const initialCell = maze[0][0];
+
+    initialCell.markAsVisited();
+
+    stack.push(initialCell);
+
+
+}
+
+main();
