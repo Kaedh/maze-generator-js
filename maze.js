@@ -44,7 +44,7 @@ function topIsAvailable(cellIndex, grid) {
       return false;
     }
 
-    return true;
+    return topNeighbour;
   } catch (error) {
     return false;
   }
@@ -58,7 +58,7 @@ function rightIsAvailable(cellIndex, grid) {
       return false;
     }
 
-    return true;
+    return rightNeighbour;
   } catch (error) {
     return false;
   }
@@ -72,31 +72,33 @@ function bottomIsAvailable(cellIndex, grid) {
       return false;
     }
 
-    return true;
+    return bottomNeighbour;
   } catch (error) {
     return false;
   }
 }
 
 function leftIsAvailable(cellIndex, grid) {
-    try {
-      let leftNeighbour = grid[ cellIndex[0] ] [ cellIndex[1] - 1 ];
-  
-      if (leftNeighbour.visited === true) {
-        return false;
-      }
-  
-      return true;
-    } catch (error) {
+  try {
+    let leftNeighbour = grid[cellIndex[0]][cellIndex[1] - 1];
+
+    if (leftNeighbour.visited === true) {
       return false;
     }
+
+    return leftNeighbour;
+  } catch (error) {
+    return false;
   }
+}
+
+
 
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
 
-  const initialCell = maze[0][0];
+  const initialCell = maze[1][0];
 
   initialCell.markAsVisited();
 
