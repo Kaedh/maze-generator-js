@@ -1,6 +1,6 @@
 const gridDimensions = {
-  width: 10,
-  height: 10,
+  width: 3,
+  height: 3,
 };
 
 class Cell {
@@ -62,6 +62,20 @@ function rightIsAvailable(cellIndex, grid) {
     } catch (error) {
       return false;
     }
+}
+
+function bottomIsAvailable(cellIndex, grid) {
+    try {
+      let bottomNeighbour = grid[cellIndex[0] + 1][cellIndex[1]];
+  
+      if (bottomNeighbour.visited === true) {
+        return false;
+      }
+  
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
   
 
@@ -69,7 +83,7 @@ function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
 
-  const initialCell = maze[0][0];
+  const initialCell = maze[0][1];
 
   initialCell.markAsVisited();
 
