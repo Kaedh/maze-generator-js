@@ -51,24 +51,38 @@ function topIsAvailable(cellIndex, grid) {
 }
 
 function rightIsAvailable(cellIndex, grid) {
-    try {
-      let rightNeighbour = grid[ cellIndex[0] ]  [cellIndex[1] + 1 ];
-  
-      if (rightNeighbour.visited === true) {
-        return false;
-      }
-  
-      return true;
-    } catch (error) {
+  try {
+    let rightNeighbour = grid[cellIndex[0]][cellIndex[1] + 1];
+
+    if (rightNeighbour.visited === true) {
       return false;
     }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
 
 function bottomIsAvailable(cellIndex, grid) {
+  try {
+    let bottomNeighbour = grid[cellIndex[0] + 1][cellIndex[1]];
+
+    if (bottomNeighbour.visited === true) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function leftIsAvailable(cellIndex, grid) {
     try {
-      let bottomNeighbour = grid[cellIndex[0] + 1][cellIndex[1]];
+      let leftNeighbour = grid[ cellIndex[0] ] [ cellIndex[1] - 1 ];
   
-      if (bottomNeighbour.visited === true) {
+      if (leftNeighbour.visited === true) {
         return false;
       }
   
@@ -77,13 +91,12 @@ function bottomIsAvailable(cellIndex, grid) {
       return false;
     }
   }
-  
 
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
 
-  const initialCell = maze[0][1];
+  const initialCell = maze[0][0];
 
   initialCell.markAsVisited();
 
