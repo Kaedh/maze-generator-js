@@ -37,19 +37,33 @@ function createDataStructure(gridDimensions) {
 }
 
 function topIsAvailable(cellIndex, grid) {
-    try {
-        let topNeighbour = grid[cellIndex[0] - 1] [ cellIndex[1] ];
+  try {
+    let topNeighbour = grid[cellIndex[0] - 1][cellIndex[1]];
 
-        if (topNeighbour.visited === true) {
-            return false;
-        }
-
-        return true
-
-    } catch (error) {
-        return false;
+    if (topNeighbour.visited === true) {
+      return false;
     }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
+
+function rightIsAvailable(cellIndex, grid) {
+    try {
+      let rightNeighbour = grid[ cellIndex[0] ]  [cellIndex[1] + 1 ];
+  
+      if (rightNeighbour.visited === true) {
+        return false;
+      }
+  
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+  
 
 function main() {
   let stack = [];
