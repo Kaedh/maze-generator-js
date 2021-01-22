@@ -92,13 +92,33 @@ function leftIsAvailable(cellIndex, grid) {
   }
 }
 
+function getAllAvailableNeighbours(cell, grid) {
+  let availableneighbours = [];
 
+  if (topIsAvailable(cell.index, grid)) {
+    availableneighbours.push(topIsAvailable(cell.index, grid));
+  }
+
+  if (rightIsAvailable(cell.index, grid)) {
+    availableneighbours.push(rightIsAvailable(cell.index, grid));
+  }
+
+  if (bottomIsAvailable(cell.index, grid)) {
+    availableneighbours.push(bottomIsAvailable(cell.index, grid));
+  }
+
+  if (leftIsAvailable(cell.index, grid)) {
+    availableneighbours.push(leftIsAvailable(cell.index, grid));
+  }
+
+  return availableneighbours;
+}
 
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
 
-  const initialCell = maze[1][0];
+  const initialCell = maze[1][1];
 
   initialCell.markAsVisited();
 
