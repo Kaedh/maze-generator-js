@@ -4,18 +4,21 @@ const gridDimensions = {
 };
 
 class Cell {
-    constructor() {
+    constructor(index) {
         this.top = true;
         this.right = true;
         this.bottom = true;
         this.left = true;
 
         this.visited = false;
+
+        this.index = index;
     };
 
     markAsVisited() {
         this.visited = true;
-    }
+    };
+
 };
 
 function createDataStructure(gridDimensions) {
@@ -25,7 +28,7 @@ function createDataStructure(gridDimensions) {
         let newRow = [];
         
         for (let col = 0; col < gridDimensions.width; col++) {
-            newRow.push( new Cell() )
+            newRow.push( new Cell([row, col]) )
         
         }
 
