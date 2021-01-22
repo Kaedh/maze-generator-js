@@ -36,6 +36,21 @@ function createDataStructure(gridDimensions) {
   return gridMatrix;
 }
 
+function topIsAvailable(cellIndex, grid) {
+    try {
+        let topNeighbour = grid[cellIndex[0] - 1] [ cellIndex[1] ];
+
+        if (topNeighbour.visited === true) {
+            return false;
+        }
+
+        return true
+
+    } catch (error) {
+        return false;
+    }
+}
+
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
