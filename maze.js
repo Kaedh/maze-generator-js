@@ -1,8 +1,3 @@
-const gridDimensions = {
-  width: 10,
-  height: 10,
-};
-
 class Cell {
   constructor(index) {
     this.top = true;
@@ -138,16 +133,48 @@ function render(grid) {
   document.getElementById('root').innerHTML = update(grid);
 }
 
+function run() {
+  
+  if (stack.length > 0) {
+    let current = stack.pop();
+
+    let allneighbours = getAllAvailableNeighbours(current, maze);
+
+    if ( allneighbours.length > 0) {
+      stack.push(current);
+
+      let choosen = allneighbours[Math.floor(Math.random() * allneighbours.length)];
+      console.log(choosen)
+      choosen.markAsVisited();
+      
+      stack.push(choosen)
+    }
+
+    
+    render(maze)
+  }
+}
+
 function main() {
-  let stack = [];
-  const maze = createDataStructure(gridDimensions);
+  
+  
   const initialCell = maze[0][0];
 
   initialCell.markAsVisited();
 
-  render(maze)
-
   stack.push(initialCell);
+
+  /*setInterval( () => run(), 200) ;*/
+
+  
 }
+
+const gridDimensions = {
+  width: 10,
+  height: 10,
+};
+
+let stack = [];
+const maze = createDataStructure(gridDimensions);
 
 main();
