@@ -24,23 +24,23 @@ body {
     
 }
 
-#root td .visited {
+.visited {
     background-color: purple;
 
 }
 
-#root td .top {
+.top {
     border-top: none;
 }
 
-#root td .right {
+.right {
     border-right: none;
 }
 
-#root td .bottom {
+.bottom {
     border-bottom: none;
 }
 
-#root td .left {
+.left {
     border-left: none;
 }
