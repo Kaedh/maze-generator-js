@@ -21,7 +21,7 @@ class Cell {
   
 
   htmlTemplate() {
-    return `<td class="${ this.visited ?  'visited' : '' } ${ this.top ? '' : 'top'} ${ this.right ? '' : 'right'} ${ this.bottom ? '' : 'bottom'} ${ this.left ? '' : 'left'}"></td>`
+    return `<td class="${ this.visited ?  'visited' : '' }${ this.top ? '' : 'top'}${ this.right ? '' : 'right'}${ this.bottom ? '' : 'bottom'}${ this.left ? '' : 'left'}"></td>`
   }
 }
 
@@ -134,6 +134,10 @@ function update(grid) {
     return table;
 }
 
+function render(grid) {
+  document.getElementById('root').innerHTML = update(grid);
+}
+
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
@@ -141,6 +145,8 @@ function main() {
   const initialCell = maze[0][0];
 
   initialCell.markAsVisited();
+
+  document.getElementById('root').innerHTML = update(maze)
 
   stack.push(initialCell);
 }
