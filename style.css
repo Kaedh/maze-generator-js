@@ -1,0 +1,25 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+};
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+#root table {
+    border-collapse: collapse;
+    border: 1px solid #000;
+}
+
+#root td {
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    border: 1px solid #000;
+    
+}
