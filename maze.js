@@ -6,6 +6,7 @@ class Cell {
     this.left = true;
 
     this.visited = false;
+    this.current = false;
 
     this.index = index;
   }
@@ -16,7 +17,7 @@ class Cell {
   
 
   htmlTemplate() {
-    return `<td class="${ this.visited ?  'visited' : '' }${ this.top ? '' : 'top'}${ this.right ? '' : 'right'}${ this.bottom ? '' : 'bottom'}${ this.left ? '' : 'left'}"></td>`
+    return `<td class="${ this.current ?  'current' : '' } ${ this.visited ?  'visited' : '' } ${ this.top ? '' : 'top'} ${ this.right ? '' : 'right'} ${ this.bottom ? '' : 'bottom'} ${ this.left ? '' : 'left'}"></td>`
   }
 }
 
@@ -129,6 +130,27 @@ function update(grid) {
     return table;
 }
 
+function removeTopWall(current, next) {
+  current.top = false;
+  next.bottom = false;
+}
+
+function removeRightWall(current, next) {
+  current.right = false;
+  next.left = false;
+}
+
+function removeBottomWall(current, next) {
+  current.bottom = false;
+  next.top = false;
+}
+
+function removeLeftWall(current, next) {
+  current.left = false;
+  next.right = false;
+}
+
+
 function render(grid) {
   document.getElementById('root').innerHTML = update(grid);
 }
@@ -136,45 +158,51 @@ function render(grid) {
 function run() {
   
   if (stack.length > 0) {
-    let current = stack.pop();
+    let current = stack.pop(); 
+
+    current.current = true;
+
 
     let allneighbours = getAllAvailableNeighbours(current, maze);
-
+    
     if ( allneighbours.length > 0) {
+      current.current = false;
       stack.push(current);
-
+            
       let choosen = allneighbours[Math.floor(Math.random() * allneighbours.length)];
-      console.log(choosen)
+
+      if (choosen.index[0] < current.index[0]) removeTopWall(current, choosen) 
+      if (choosen.index[1] > current.index[1]) removeRightWall(current, choosen)
+      if (choosen.index[0] > current.index[0]) removeBottomWall(current, choosen) 
+      if (choosen.index[1] < current.index[1]) removeLeftWall(current, choosen)  
+
       choosen.markAsVisited();
       
       stack.push(choosen)
+      
     }
 
     
     render(maze)
+    
   }
-}
-
-function main() {
-  
-  
-  const initialCell = maze[0][0];
-
-  initialCell.markAsVisited();
-
-  stack.push(initialCell);
-
-  /*setInterval( () => run(), 200) ;*/
-
   
 }
+
 
 const gridDimensions = {
-  width: 10,
-  height: 10,
+  width: 35,
+  height: 35,
 };
 
 let stack = [];
 const maze = createDataStructure(gridDimensions);
 
-main();
+const initialCell = maze[0][0];
+  
+initialCell.markAsVisited();
+
+stack.push(initialCell);
+
+setInterval( () => run(), 50) ;
+

@@ -4,6 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #bca0dc
 };
 
 #root {
@@ -13,21 +14,27 @@ body {
 
 #root table {
     border-collapse: collapse;
-    border: 1px solid #000;
+    border: 2px solid white;
 }
 
-#root td {
-    width: 25px;
-    height: 25px;
+td {
+    width: 15px;
+    height: 15px;
     color: #fff;
-    border: 1px solid #000;
+    border: 2px solid white;
     
 }
 
 .visited {
-    background-color: purple;
+    background-color: #52307c;
 
 }
+
+.current {
+    background-color: #3c1361;
+}
+
+
 
 .top {
     border-top: none;
