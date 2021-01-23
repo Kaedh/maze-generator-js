@@ -141,12 +141,11 @@ function render(grid) {
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
-
   const initialCell = maze[0][0];
 
   initialCell.markAsVisited();
 
-  document.getElementById('root').innerHTML = update(maze)
+  render(maze)
 
   stack.push(initialCell);
 }
