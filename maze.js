@@ -1,6 +1,6 @@
 const gridDimensions = {
-  width: 3,
-  height: 3,
+  width: 10,
+  height: 10,
 };
 
 class Cell {
@@ -17,6 +17,11 @@ class Cell {
 
   markAsVisited() {
     this.visited = true;
+  }
+  
+
+  htmlTemplate() {
+    return `<td class="${ this.visited ?  'visited' : '' } ${ this.top ? 'top' : ' '} ${ this.right ? 'right' : ' '} ${ this.bottom ? 'bottom' : ' '} ${ this.left ? 'left' : ' '}"></td>`
   }
 }
 
@@ -114,11 +119,26 @@ function getAllAvailableNeighbours(cell, grid) {
   return availableneighbours;
 }
 
+function update(grid) {
+    let table =  `<table>`;
+    for (let row = 0; row < grid[1].length ; row++) {
+        table += `<tr>`
+        for (let col = 0; col < grid[0].length ; col++) {
+          table += grid[row][col].htmlTemplate();
+        }
+        table += `</tr>`
+      }
+
+    table += `</table>`
+
+    return table;
+}
+
 function main() {
   let stack = [];
   const maze = createDataStructure(gridDimensions);
 
-  const initialCell = maze[1][1];
+  const initialCell = maze[0][0];
 
   initialCell.markAsVisited();
 
