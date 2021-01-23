@@ -21,7 +21,7 @@ class Cell {
   
 
   htmlTemplate() {
-    return `<td class="${ this.visited ?  'visited' : '' } ${ this.top ? 'top' : ' '} ${ this.right ? 'right' : ' '} ${ this.bottom ? 'bottom' : ' '} ${ this.left ? 'left' : ' '}"></td>`
+    return `<td class="${ this.visited ?  'visited' : '' } ${ this.top ? '' : 'top'} ${ this.right ? '' : 'right'} ${ this.bottom ? '' : 'bottom'} ${ this.left ? '' : 'left'}"></td>`
   }
 }
 
